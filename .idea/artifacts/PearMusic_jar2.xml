@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="PearMusic:jar2">
+    <output-path>$PROJECT_DIR$/out/artifacts/PearMusic_jar2</output-path>
+    <root id="archive" name="PearMusic.jar">
+      <element id="module-output" name="PearMusic" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/tmatesoft/sqljet/sqljet/1.1.10/sqljet-1.1.10.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/antlr/antlr-runtime/3.4/antlr-runtime-3.4.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/mpatric/mp3agic/0.8.2/mp3agic-0.8.2.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

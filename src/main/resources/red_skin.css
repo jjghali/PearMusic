@@ -1,0 +1,365 @@
+/*
+    Document   : default_skin
+    Author     : Joshua Ghali
+    Description:
+        Theme par defaut pour l'interface de PearMusic
+*/
+
+.background {
+    -fx-background-color: #1d1d1d;
+}
+
+.header {
+    -fx-background-color: #1d1d1d;
+    -fx-font-size: 42pt;
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: white;
+}
+
+.table-cell {
+    -fx-b: #FFFFFF;
+}
+
+.table-row-cell {
+    -fx-background: #1d1d1d;
+    -fx-background-color: #1d1d1d, -fx-background;
+}
+
+.table-row-cell:odd {
+    -fx-background: #3a3a3a;
+}
+
+.table-view .column-header {
+    -fx-background-color: #000000, #000000, #000000;
+}
+
+#sliderTemps .track {
+    -fx-background-color: null; /* Hide the track */
+    -fx-background-insets: 1 0 -1 0, 0, 1;
+    -fx-background-radius: 2.5, 2.5, 1.5;
+    -fx-padding: 0.208333em; /* 2.5 */
+}
+
+.progress-bar {
+    -fx-accent: #dc1200;
+}
+
+.progress-bar .bar {
+    -fx-padding: 3px;
+    -fx-background-insets: 0;
+}
+
+.item-title {
+    -fx-font-size: 11pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: white;
+    -fx-opacity: 0.6;
+}
+
+.button {
+    -fx-background-color: transparent;
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 11pt;
+    -fx-text-fill: #d8d8d8;
+    -fx-border-style: solid;
+    -fx-border-width: 0px;
+    -fx-padding: 0px;
+}
+
+.button:hover {
+    -fx-background-color: #3a3a3a;
+    -fx-border-style: solid;
+}
+
+.button:pressed, .button:default:hover:pressed {
+    -fx-background-color: #dc1200;
+    -fx-text-fill: #1d1d1d;
+    -fx-border-style: solid;
+}
+
+.toggle-button {
+    -fx-background-color: transparent;
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 11pt;
+    -fx-text-fill: #d8d8d8;
+    -fx-border-style: solid;
+    -fx-border-width: 0px;
+    -fx-padding: 0px;
+}
+
+.toggle-button:hover {
+    -fx-background-color: #3a3a3a;
+    -fx-border-style: solid;
+}
+
+.toggle-button:pressed, .button:default:hover:pressed {
+    -fx-background-color: #dc1200;;
+    -fx-text-fill: #1d1d1d;
+    -fx-border-style: solid;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #b8b8b8;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+}
+
+.scroll-bar .thumb:hover {
+    -fx-color: #cacaca;
+}
+
+.scroll-bar .thumb:pressed {
+    -fx-color: #1e1e1e;
+}
+
+.scroll-bar .track {
+    -fx-background-color: #4a4a4a;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+}
+
+.scroll-bar .track-background {
+    -fx-background-color: #4a4a4a;
+    -fx-background-insets: 0;
+}
+
+.scroll-bar .increment-button, .scroll-bar .decrement-button {
+    -fx-background-color: #4a4a4a;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+    -fx-padding: 0.25em; /* 3 */
+}
+
+.scroll-bar .increment-button:hover, .scroll-bar .decrement-button:hover {
+    -fx-background-color: #cacaca;
+}
+
+.scroll-bar .increment-button:pressed, .scroll-bar .decrement-button:pressed {
+    -fx-background-color: #1e1e1e;
+}
+
+.scroll-bar:horizontal .increment-arrow {
+    -fx-background-color: #1e1e1e, #1e1e1e;
+    -fx-background-insets: 1 0 -1 0, 0;
+    -fx-padding: 0.5em 0.333333em 0.0em 0.0em; /* 6 4 0 0 */
+    -fx-shape: "M7.626,12.876L4.251,8.751H7.14L11,12.876L7.14,17H4.251L7.626,12.876z";
+}
+
+.scroll-bar:vertical .increment-arrow {
+    -fx-background-color: #1e1e1e, #1e1e1e;
+    -fx-background-insets: 1 0 -1 0, 0;
+    -fx-padding: 0.333333em 0.5em 0.0em 0.0em; /*4 6 0 0 */
+    -fx-shape: "M8.124,13.625l4.125-3.375v2.889l-4.125,3.86L4,13.139V10.25L8.124,13.625z";
+}
+
+.scroll-bar .increment-button:pressed .increment-arrow {
+    -fx-background-color: white, white;
+}
+
+.scroll-bar:horizontal .decrement-arrow {
+    -fx-background-color: #1e1e1e, #1e1e1e;
+    -fx-background-insets: 1 0 -1 0, 0;
+    -fx-padding: 0.5em 0.333333em 0.0em 0.0em; /* 6 4 0 0 */
+    -fx-shape: "M11,17H8.111l-3.86-4.124l3.86-4.125H11l-3.375,4.125L11,17z";
+}
+
+.scroll-bar:vertical .decrement-arrow {
+    -fx-background-color: #1e1e1e, #1e1e1e;
+    -fx-background-insets: 1 0 -1 0, 0;
+    -fx-padding: 0.333333em 0.5em 0.0em 0.0em; /* 4 6 0 0 */
+    -fx-shape: "M4,17v-2.889l4.124-3.86l4.125,3.86V17l-4.125-3.375L4,17z";
+}
+
+.scroll-bar .decrement-button:pressed .decrement-arrow {
+    -fx-background-color: white, white;
+}
+
+.scroll-bar:disabled {
+    -fx-opacity: 0.4;
+}
+
+.scroll-pane {
+    -fx-background-color: transparent, -fx-background;
+}
+
+.scroll-pane .corner {
+    -fx-background-color: black, #4a4a4a;
+}
+
+.tab {
+    -fx-background-color: #282828;
+    -fx-text-fill: #CCCCCC;
+    -fx-border-color: #282828;
+    -fx-border-style: solid;
+    -fx-border-width: 0px;
+}
+
+.tab .tab-label {
+    -fx-skin: "com.sun.javafx.scene.control.skin.LabelSkin";
+    -fx-alignment: center-left;
+    -fx-text-fill: #CCCCCC;
+    -fx-border-style: solid;
+    -fx-border-width: 0px;
+    -fx-padding: 0px;
+}
+
+.tab .tab-label:hover {
+    -fx-skin: "com.sun.javafx.scene.control.skin.LabelSkin";
+    -fx-alignment: center-left;
+    -fx-text-fill: #ffffff;
+}
+
+.tab .tab-label:selected {
+    -fx-skin: "com.sun.javafx.scene.control.skin.LabelSkin";
+    -fx-alignment: center-left;
+    -fx-text-fill: #ffffff;
+}
+
+.tab .tab-label:pressed {
+    -fx-skin: "com.sun.javafx.scene.control.skin.LabelSkin";
+    -fx-alignment: center-left;
+    -fx-text-fill: #ffffff;
+}
+
+.tab:selected {
+    -fx-background-color: #dc1200;
+}
+
+.tab-content-area {
+    -fx-background-color: #282828;
+    -fx-border-style: solid;
+    -fx-border-width: 0px;
+    -fx-padding: 0px;
+}
+
+.tab-pane {
+    -fx-skin: "com.sun.javafx.scene.control.skin.TabPaneSkin";
+}
+
+.tab-pane *.tab-header-background {
+    -fx-background-color: #141414;
+}
+
+.list-view {
+    -fx-border-style: solid;
+    -fx-border-color: #60A917;
+    -fx-focus-color: transparent;
+    -fx-background-color: #1d1d1d;
+    -fx-background-insets: 0;
+    -fx-padding: 0px;
+    -fx-border-width: 0px;
+}
+
+.list-view:focused {
+    -fx-focus-color: transparent;
+    -fx-border-color: #dc1200;
+}
+
+.list-cell {
+    -fx-text-fill: white;
+
+}
+
+.list-cell:filled:selected:focused {
+    -fx-background-color: #dc1200;
+    -fx-text-fill: white;
+}
+
+.list-cell:odd {
+    -fx-background-color: #3a3a3a;
+}
+
+.list-cell:even {
+    -fx-background-color: #1d1d1d;
+}
+
+.list-cell:empty {
+    -fx-background-color: #1d1d1d;
+}
+
+.menu-bar {
+    -fx-background-color: #141414;
+}
+
+.menu-bar .label {
+    -fx-text-fill: #ffffff;
+}
+
+.menu {
+    -fx-background-color: #323232;
+    -fx-text-fill: #ffffff;
+    -fx-border-style: solid;
+    -fx-border-color: transparent;
+}
+
+.context-menu {
+    -fx-background-color: #323232;
+    -fx-text-fill: #ffffff;
+    -fx-border-style: solid;
+    -fx-border-color: transparent;
+}
+
+.menu:hover {
+    -fx-background-color: #dc1200;
+    -fx-text-fill: #ffffff
+}
+
+.menu .separator {
+    -fx-background-color: #141414;
+}
+
+.menu:selected {
+    -fx-background-color: #dc1200;
+    -fx-text-fill: #ffffff
+}
+
+.menu-item {
+    -fx-background-color: #323232;
+    -fx-text-fill: #ffffff
+}
+
+.menu-item:hover {
+    -fx-background-color: #dc1200;
+    -fx-text-fill: #ffffff
+}
+
+.menu-button {
+    -fx-background-color: transparent;
+}
+
+.menu-button .arrow {
+    -fx-background-insets: 1 0 -1 0, 0;
+    -fx-background-color: -fx-mark-color, #FFFFFF;
+    -fx-padding: 0.25em; /* 3 */
+    -fx-shape: "M 0 -3.5 v 7 l 4 -3.5 z";
+}
+
+.menu-button:hover .arrow {
+    -fx-background-insets: 1 0 -1 0, 0;
+    -fx-background-color: -fx-mark-highlight-color, -fx-mark-color;
+    -fx-padding: 0.25em; /* 3 */
+    -fx-shape: "M 0 -3.5 v 7 l 4 -3.5 z";
+}
+
+.menu-button:openvertically .arrow {
+    -fx-padding: 0.166667em 0.333333em 0.166667em 0.333333em; /* 2 4 2 4 */
+    -fx-shape: "M 0 0 h 7 l -3.5 4 z";
+}
+
+.pane {
+    -fx-border-color: #dc1200;
+    -fx-border-width: 1px;
+    -fx-background-color: #282828;
+}
+
+.text-field {
+    -fx-background-color: #3a3a3a;
+    -fx-text-fill: #ffffff;
+    -fx-border-style: solid;
+    -fx-border-width: 0px;
+    -fx-padding: 0px;
+}
+
+.label {
+    -fx-text-fill: #ffffff;
+}

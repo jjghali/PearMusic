@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane onKeyPressed="#onKeyPressed" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="182.0" prefWidth="328.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.qc.bdeb.pearmusic.Vue.CoordonnateurAjoutListeDeLecture">
+   <children>
+      <ImageView fitHeight="103.0" fitWidth="96.0" layoutX="24.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@white_versions/plus_black.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="149.0" layoutY="52.0" text="Choissisez la liste de lecture." />
+      <Button fx:id="btnOk" layoutX="149.0" layoutY="106.0" mnemonicParsing="false" onMouseClicked="#handleCliqueOk" prefHeight="25.0" prefWidth="57.0" text="Ok" />
+      <Button fx:id="btnAnnuler" layoutX="240.0" layoutY="106.0" mnemonicParsing="false" onMouseClicked="#handleCliqueAnnuler" text="Annuler" />
+      <ComboBox fx:id="cboListesDeLecture" layoutX="149.0" layoutY="75.0" onKeyPressed="#onKeyPressed" prefWidth="150.0" />
+   </children>
+</Pane>

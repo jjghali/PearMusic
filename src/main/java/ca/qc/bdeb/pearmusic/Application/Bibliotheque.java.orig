@@ -1,0 +1,234 @@
+package ca.qc.bdeb.pearmusic.Application;
+
+import ca.qc.bdeb.pearmusic.AccesPersistance.DBHelper;
+import org.tmatesoft.sqljet.core.SqlJetException;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+
+/**
+ * Classe qui permet la persistance des fichiers mp3 de l'utilisateur afin de
+ * l'afficher dans une bibliothèque.
+ * Created by Stu Ureta on 2014-10-28.
+ */
+class Bibliotheque {
+
+    /**
+     * La bibliothèque garde en mémoire ses informations à l'aide d'une Base de donées
+     */
+    private final DBHelper DB_HELPER;
+
+    /**
+     * Constructeur
+     */
+    public Bibliotheque() {
+        DB_HELPER = DBHelper.getInstance();
+    }
+
+    /**
+     * Méthode qui retourne tous les fichiers contenus dans la bibliotheque
+     *
+     * @return DTO : une ArrayList<ChansonDTO>
+     */
+    public ArrayList<ChansonDTO> obtenirChansons() throws SqlJetException {
+        ArrayList<ChansonDTO> DTO = DB_HELPER.getChansonsBibliotheque();
+        return DTO;
+    }
+
+    /**
+     * Méthode qui retourne tous les fichiers contenus dans la bibliotheque
+     *
+     * @return DTO : une ArrayList<ChansonDTO>
+     */
+    public ArrayList<String> obtenirArtistes() throws SqlJetException {
+        ArrayList<ChansonDTO> DTO = DB_HELPER.getChansonsBibliotheque();
+        ArrayList<String> artistes = new ArrayList<String>();
+        for (ChansonDTO dto : DTO) {
+            if (!artisteExiste(dto.getArtiste(), artistes)) {
+                artistes.add(dto.getArtiste());
+            }
+        }
+        return artistes;
+    }
+
+
+    public ArrayList<AlbumDTO> obtenirAlbums() throws SqlJetException, IOException {
+        ArrayList<ChansonDTO> DTO = DB_HELPER.getChansonsBibliotheque();
+        ArrayList<AlbumDTO>albumsAAfficher = new ArrayList<AlbumDTO>();
+
+        Album album;
+        for (ChansonDTO dto : DTO) {
+            if (!albumExiste(dto.getAlbum(), albumsAAfficher)) {
+                File temp = new File (dto.getPath());
+                if(temp.exists()) {
+                    Chanson chanson = new Chanson(dto.getPath());
+                    album = new Album(chanson.getAlbumArt(), chanson.getAlbum(), chanson.getArtiste(), chanson.getAnnee());
+                    albumsAAfficher.add(new AlbumDTO(album));
+                } else {
+                    DB_HELPER.deleteChanson(dto.getPath());
+                }
+            }
+        }
+        return albumsAAfficher;
+    }
+    /**
+     * Methode qui recupere les noms des chansons d'un album
+     * @param nomAlbum
+     */
+    public ArrayList<ChansonDTO> obtenirChansonsAlbum(String nomAlbum) throws SqlJetException {
+        return DB_HELPER.getChansonsAlbumBibliotheque(nomAlbum);
+    }
+
+    /**
+     * Methode qui verifie si l'album existe deja dans la liste des albums
+     *
+     * @param nomAlbum
+     * @return existe
+     */
+    private boolean albumExiste(String nomAlbum, ArrayList<AlbumDTO> albumsAAfficher ){
+        boolean existe = false;
+        for (AlbumDTO info: albumsAAfficher){
+            if (info.getAlbum().equals(nomAlbum)) {
+                existe = true;
+                break;
+            }
+        }
+        return existe;
+    }
+
+    /**
+     * Methode qui verifie si l'artiste existe deja dans la liste des albums
+     *
+     * @param nomArtiste
+     * @return existe
+     */
+    private boolean artisteExiste(String nomArtiste, ArrayList<String> artistesAAfficher) {
+        boolean existe = false;
+        for (String info : artistesAAfficher) {
+            if (info.equals(nomArtiste)) {
+                existe = true;
+                break;
+            }
+        }
+        return existe;
+    }
+
+    /**
+     * Méthode qui ajoute une chanson à la bibliothèque
+     *
+     * @param chansonDTO
+     */
+    public void ajouterChanson(ChansonDTO chansonDTO) {
+        try {
+            DB_HELPER.ajouterChanson(chansonDTO);
+        } catch (SqlJetException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Surcharge de méthode, elle permet de recevoir une liste de ChansonDTO
+     *
+     * @param chansonDTO : Une ArrayList<ChansonDTO>
+     */
+    public void ajouterChanson(ArrayList<ChansonDTO> chansonDTO) {
+        try {
+            DB_HELPER.insererSurBD(chansonDTO);
+        } catch (SqlJetException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Méthode qui met a jour les informations changes sur l'interface dans la db
+     *
+     * @param info chanson modifie dans la liste de lecture
+     */
+    public void updateChanson(ChansonDTO info) throws Exception {
+        try {
+            DB_HELPER.updateMusique(info);
+        } catch (SqlJetException e) {
+            System.out.println(e.getMessage() + " update sur la facade");
+        }
+    }
+
+    /**
+     * Méthode qui efface une chanson sur la bd a l'aide du path correspondant
+     *
+     * @param path path correspondant a la chanson effacee dans la liste de lecture
+     */
+    public void deleteChanson(String path) throws Exception {
+        try {
+            DB_HELPER.deleteChanson(path);
+        } catch (SqlJetException e) {
+            System.out.println(e.getMessage() + " update sur la facade");
+        }
+    }
+
+    public ArrayList<String> getAlbums(String album) {
+        return DB_HELPER.getAlbums(album);
+    }
+
+    public ArrayList<String> getChansonsAlbums(String album) {
+        return dbHelper.getChansonsAlbums(album);
+>>>>>>> other
+    }
+
+    public ArrayList<String> getChansonsArtiste(String artiste) {
+        return DB_HELPER.getChansonsArtiste(artiste);
+    }
+
+    public void ajouterPlusieursChansons(ArrayList<Chanson> liste) {
+        ArrayList<ChansonDTO> chansonDTOs = new ArrayList<ChansonDTO>();
+
+        for (Chanson info : liste) {
+            chansonDTOs.add(info.asDTO());
+        }
+        ajouterChanson(chansonDTOs);
+    }
+
+    /**
+     * Méthode qui met à jour les chansons de la bibliothèque
+     *
+     * @param chanson
+     */
+    public void mettreAJourChansons(Chanson chanson) {
+        // DTO avec path correspondant
+        ChansonDTO info = chanson.asDTO();
+        try {
+            updateChanson(info);
+        } catch (SqlJetException e) {
+            System.out.println(e.getMessage() + " update sur la facade");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void insererPlaylist(String[] nomEtCheminPlaylist) throws SqlJetException {
+        DB_HELPER.insererPlaylist(nomEtCheminPlaylist[0], nomEtCheminPlaylist[1]);
+    }
+
+    public ArrayList<PlaylistDTO> getPlaylists(){
+        return DB_HELPER.getPlayLists();
+    }
+
+    /**
+     * Méthode qui permet la sauvegarde des informations des chansons ajoutes par l'utilisateur
+     *
+     * @param fichiers
+     * @throws IOException
+     */
+    public void sauvegarderFichier(ArrayList<File> fichiers) throws IOException {
+        if (fichiers.size() == 1) {
+            Chanson chansonAjoutee = new Chanson(fichiers.get(0).getAbsolutePath());
+            ajouterChanson(chansonAjoutee.asDTO());
+        } else {
+            ArrayList<Chanson> listeChansonsAjoutees = new ArrayList<Chanson>();
+            for (File fichier : fichiers) {
+                listeChansonsAjoutees.add(new Chanson(fichier.getPath()));
+            }
+            ajouterPlusieursChansons(listeChansonsAjoutees);
+        }
+    }
+}

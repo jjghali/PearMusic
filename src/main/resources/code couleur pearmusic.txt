@@ -1,0 +1,10 @@
+en hexa
+
+vert: 60A917
+vert hover: 00FF21
+gris clair: 323232
+gris fonce: 282828
+barre menu: 141414
+
+bleu: 1713a9
+rouge: dc1200

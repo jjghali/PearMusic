@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<Pane fx:id="pnlPanneauPrincipal" onKeyPressed="#onKeyPressed" stylesheets="default_skin.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.qc.bdeb.pearmusic.Vue.Coordonnateur">
+    <children>
+        <MenuBar fx:id="mnuMenuBar" prefHeight="25.0" prefWidth="836.0" styleClass="context-menu">
+            <menus>
+                <Menu mnemonicParsing="false" text="Fichier">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#handleOuvrirFichierAction" text="Ajouter à la bibliothèque..." />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" onAction="#handleFermerAction" text="Quitter" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Édition">
+                    <items>
+                        <Menu mnemonicParsing="false" text="Skin">
+                            <items>
+                                <MenuItem mnemonicParsing="false" onAction="#handleChangeSkinVert" text="Vert Acide" />
+                                <MenuItem mnemonicParsing="false" onAction="#handleChangeSkinRouge" text="Rouge" />
+                                <MenuItem mnemonicParsing="false" onAction="#handleChangeSkinBleu" text="Bleu" />
+                            </items>
+                        </Menu>
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Commandes">
+                    <items>
+                        <MenuItem onAction="#handleActionStop" text="Arrêt (A)" />
+                        <MenuItem onAction="#handleActionPlayPause" text="Lecture/Pause (Spacebar)" />
+                        <MenuItem onAction="#handleActionShuffle" text="Aléatoire (V)" />
+                        <MenuItem onAction="#handleActionRepeat" text="Répéter (R)" />
+                        <MenuItem onAction="#handleActionMute" text="Assourdir (M)" />
+                        <MenuItem onAction="#handleActionPrevious" text="Chanson précédente (P)" />
+                        <MenuItem onAction="#handleActionNext" text="Chanson suivante (S)" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Aide">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#handleAProposClique" text="À propos..." />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <Pane fx:id="pnlLayoutPrincipal" layoutY="25.0" prefHeight="578.0" prefWidth="836.0" styleClass="pane">
+            <children>
+                <Pane fx:id="pnlBoutonControl" prefHeight="55.0" prefWidth="836.0">
+                    <children>
+                        <ProgressBar fx:id="progressBarTemps" layoutX="234.0" layoutY="25.0" prefHeight="4.0" prefWidth="260.0" progress="1.0" />
+                        <Slider fx:id="sliderTemps" layoutX="229.0" layoutY="20.0" max="1.0" onMouseClicked="#handleSliderClick" prefHeight="16.0" prefWidth="270.0" style="-fx-fill: #60A917;">
+                            <cursor>
+                                <Cursor fx:constant="DEFAULT" />
+                            </cursor>
+                        </Slider>
+
+                        <Label fx:id="lblDureeEcoule" layoutX="193.0" layoutY="20.0" style="-fx-text-fill: #CCCCCC;" text="0:00" />
+                        <Label fx:id="lblDuree" layoutX="505.0" layoutY="20.0" style="-fx-text-fill: #CCCCCC;" text="0:00" />
+                        <Button contentDisplay="GRAPHIC_ONLY" layoutX="669.0" layoutY="13.0" mnemonicParsing="false" onAction="#handleArreterAction" prefHeight="30.0" prefWidth="35.0" text="stop">
+                            <graphic>
+                                <ImageView fitHeight="15.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@white_versions/stop.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button contentDisplay="GRAPHIC_ONLY" layoutX="631.0" layoutY="13.0" mnemonicParsing="false" onMousePressed="#handleRembobinageChansonEnfonce" onMouseReleased="#handleRembobinageChansonRelache" prefHeight="30.0" prefWidth="35.0" text="Retour">
+                            <graphic>
+                                <ImageView fitHeight="15.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@white_versions/rewind.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button contentDisplay="GRAPHIC_ONLY" layoutX="707.0" layoutY="13.0" mnemonicParsing="false" onAction="#handleJouerAction" prefHeight="30.0" prefWidth="35.0" text="play">
+                            <graphic>
+                                <ImageView fx:id="imgPlay" fitHeight="21.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@white_versions/play.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button contentDisplay="GRAPHIC_ONLY" layoutX="745.0" layoutY="13.0" mnemonicParsing="false" onMousePressed="#handleAvanceRapideChansonEnfonce" onMouseReleased="#handleAvanceRapideChansonRelache" prefHeight="30.0" prefWidth="35.0" text="Avance">
+                            <graphic>
+                                <ImageView fitHeight="15.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@white_versions/foward.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <TextField fx:id="txtRecherche" layoutX="34.0" layoutY="19.0" onKeyReleased="#handleRechercheAction" />
+                        <ImageView fx:id="imgLoupe" fitHeight="17.0" fitWidth="22.0" layoutX="9.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+                            <image>
+                                <Image url="@search_icon_default.png" />
+                            </image>
+                        </ImageView>
+                        <Button layoutX="783.0" layoutY="13.0" mnemonicParsing="false" onMouseClicked="#handleProchaineChansonAction" prefHeight="30.0" prefWidth="35.0">
+                            <graphic>
+                                <ImageView fitHeight="15.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@white_versions/suivant.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button layoutX="593.0" layoutY="13.0" mnemonicParsing="false" onMouseClicked="#handlePrecedenteChansonAction" prefHeight="30.0" prefWidth="35.0">
+                            <graphic>
+                                <ImageView fitHeight="15.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@white_versions/precedent.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+
+                        <MenuButton fx:id="btnVolume" popupSide="RIGHT" layoutX="557.0" layoutY="13.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="10.0" maxWidth="10.0" textAlignment="CENTER" wrapText="true">
+                            <items>
+                                <MenuItem fx:id="mnuItemVolume" mnemonicParsing="false">
+                                    <graphic>
+                                        <VBox fx:id="vBoxVolume" alignment="CENTER" prefHeight="140.0" prefWidth="12.0" maxWidth="12.0">
+                                            <children>
+                                                <Label alignment="CENTER" text="+" textAlignment="CENTER">
+                                                    <font>
+                                                        <Font size="24.0" />
+                                                    </font>
+                                                </Label>
+                                                <Slider fx:id="sliderVolume" max="1.0" onMouseClicked="#handleSliderVolumeClique" orientation="VERTICAL" value="1.0" />
+                                                <Label alignment="CENTER" text="-" textAlignment="CENTER">
+                                                    <font>
+                                                        <Font size="24.0" />
+                                                    </font>
+                                                </Label>
+                                            </children>
+                                        </VBox>
+                                    </graphic>
+                                </MenuItem>
+                            </items>
+                        </MenuButton>
+                        <ToggleButton fx:id="btnAssourdir" layoutX="539.0" layoutY="13.0" mnemonicParsing="false" onMouseClicked="#handleAssourdirAction" prefHeight="30.0" prefWidth="35.0">
+                            <graphic>
+                                <ImageView fx:id="imgVolume" fitHeight="20.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@white_versions/Volume3.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </ToggleButton>
+                    </children>
+                </Pane>
+                <TabPane fx:id="ctnOnglets" layoutX="1.0" layoutY="55.0" prefHeight="520.0" prefWidth="524.0" style="-fx-background-color: #60A917;;" tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                        <Tab text="Lecture">
+                            <content>
+                                <Pane fx:id="pnlLecture" prefHeight="200.0" prefWidth="200.0" stylesheets="default_skin.css">
+                                    <children>
+                                        <TextField fx:id="txtPiste" layoutX="250.0" layoutY="46.0" onAction="#onEnterPiste" onMouseClicked="#handlePisteClique" prefHeight="25.0" prefWidth="17.0" visible="false" />
+                                        <TextField fx:id="txtChanson" layoutX="278.0" layoutY="46.0" onAction="#onEnterChanson" prefHeight="25.0" prefWidth="230.0" visible="false" />
+                                        <TextField fx:id="txtArtiste" layoutX="249.0" layoutY="76.0" onAction="#onEnterArtiste" prefHeight="25.0" prefWidth="257.0" visible="false" />
+                                        <TextField fx:id="txtAlbum" layoutX="249.0" layoutY="106.0" onAction="#onEnterAlbum" prefHeight="25.0" prefWidth="258.0" visible="false" />
+                                        <TextField fx:id="txtAnnee" layoutX="249.0" layoutY="136.0" onAction="#onEnterAnnee" prefHeight="25.0" prefWidth="40.0" visible="false" />
+                                        <ComboBox fx:id="cmbGenre" layoutX="242.0" layoutY="166.0" prefWidth="150.0" visible="false" />
+                                        <ImageView fx:id="coverAlbum" fitHeight="200.0" fitWidth="200.0" layoutX="20.0" layoutY="50.0" onMouseClicked="#handleImageAlbumClique" pickOnBounds="true" preserveRatio="true" />
+                                        <Label fx:id="lblAlbum" layoutX="250.0" layoutY="110.0" onMouseClicked="#handleAlbumClique" style="-fx-text-fill: #CCCCCC;" text="Album" />
+                                        <Label fx:id="lblArtiste" layoutX="250.0" layoutY="80.0" onMouseClicked="#handleArtisteClique" style="-fx-text-fill: #CCCCCC;" text="Artiste" />
+                                        <Label fx:id="lblAnnee" layoutX="250.0" layoutY="140.0" onMouseClicked="#handleAnneeClique" style="-fx-text-fill: #CCCCCC;" text="Année" />
+                                        <Label fx:id="lblChanson" layoutX="279.0" layoutY="50.0" onMouseClicked="#handleTitreClique" style="-fx-text-fill: #CCCCCC;" text="Titre" />
+                                        <Label fx:id="lblGenre" layoutX="250.0" layoutY="170.0" onMouseClicked="#handleGenreClique" style="-fx-text-fill: #CCCCCC;" text="Genre" />
+                                        <Label fx:id="lblPiste" layoutX="251.0" layoutY="50.0" onMouseClicked="#handlePisteClique" text="##" />
+                                        <Label layoutX="270.0" layoutY="50.0" text="-" />
+                                    </children>
+                                </Pane>
+                            </content>
+                        </Tab>
+                        <Tab fx:id="ctnOngletArtistes" text="Artiste">
+                            <content>
+                                <ListView fx:id="lstArtisteTab" onMouseClicked="#handleCliqueListArtisteTab" prefHeight="200.0" prefWidth="200.0" />
+                            </content></Tab>
+                        <Tab fx:id="ctnOngletAlbums" text="Album">
+                            <content>
+                                <ListView fx:id="lstAlbumTab" onMouseClicked="#handleCliqueListAlbumTab" prefHeight="200.0" prefWidth="200.0" />
+                            </content>
+                        </Tab>
+                        <Tab fx:id="ctnOngletChanson" text="Chanson">
+                            <content>
+                                <TableView fx:id="tabChansons" onMouseClicked="#handleCliqueListChansonTab" prefHeight="200.0" prefWidth="200.0">
+                                    <columns>
+                                        <TableColumn fx:id="colChanson" prefWidth="185.0" text="Chanson" />
+                                        <TableColumn fx:id="colArtiste" prefWidth="173.0" text="Artiste" />
+                                        <TableColumn fx:id="colAlbum" prefWidth="166.0" text="Album" />
+                                    </columns>
+                                </TableView>
+                            </content>
+                        </Tab>
+                        <Tab fx:id="ctnOngletPlaylist" text="Liste de lecture">
+                     <content>
+                        <ListView fx:id="lstPlaylists" onMouseClicked="#handleCliqueListePlaylist" prefHeight="200.0" prefWidth="200.0" />
+                     </content></Tab>
+                    </tabs>
+                </TabPane>
+                <ListView fx:id="lstChansonsEnCours" layoutX="525.0" layoutY="55.0" onMouseClicked="#handleCliqueListLectureEnCours" prefHeight="491.0" prefWidth="310.0">
+                    <effect>
+                        <Blend />
+                    </effect>
+                </ListView>
+                <Pane layoutX="527.0" layoutY="549.0" prefHeight="25.0" prefWidth="311.0">
+                    <children>
+                        <Button layoutX="1.0" layoutY="-1.0" mnemonicParsing="false" onMouseClicked="#handleEnleverAction" prefHeight="25.0" prefWidth="40.0">
+                            <graphic>
+                                <ImageView fitHeight="18.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@white_versions/minus.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button layoutX="45.0" layoutY="-1.0" mnemonicParsing="false" onAction="#handleOuvrirFichierAction" prefHeight="25.0" prefWidth="40.0">
+                            <graphic>
+                                <ImageView fitHeight="18.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@white_versions/plus.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button layoutX="90.0" layoutY="-1.0" mnemonicParsing="false" onAction="#handleHautAction" prefHeight="26.0" prefWidth="40.0">
+                            <graphic>
+                                <ImageView fitHeight="13.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@white_versions/up.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button layoutX="135.0" layoutY="-1.0" mnemonicParsing="false" onAction="#handleBasAction" prefHeight="26.0" prefWidth="40.0">
+                            <graphic>
+                                <ImageView fitHeight="13.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@white_versions/down.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <ToggleButton fx:id="btnAleatoire" layoutX="180.0" layoutY="-1.0" mnemonicParsing="false" onMouseClicked="#handleAleatoireAction" prefHeight="24.0" prefWidth="40.0">
+                            <graphic>
+                                <ImageView fx:id="imgAleatoire" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@white_versions/shuffleOff.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </ToggleButton>
+                  <Button id="btnRepeter" fx:id="btnRepeter" layoutX="225.0" layoutY="-1.0" mnemonicParsing="false" onMouseClicked="#handleRepeterAction" prefHeight="26.0" prefWidth="40.0">
+                     <graphic>
+                        <ImageView id="imgRepeter" fx:id="imgRepeter" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@white_versions/repeatoff.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button layoutX="270.0" mnemonicParsing="false" onMouseClicked="#handleSauvegarderAction" prefHeight="25.0" prefWidth="40.0">
+                      <graphic>
+                          <ImageView fitHeight="18.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                  <Image url="@white_versions/save.png" />
+                              </image>
+                          </ImageView>
+                      </graphic>
+                    </Button>
+                    </children>
+                </Pane>
+            </children>
+        </Pane>
+    </children>
+</Pane>
