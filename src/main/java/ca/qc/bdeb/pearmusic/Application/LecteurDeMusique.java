@@ -210,7 +210,7 @@ class LecteurDeMusique implements ConstantesApplication {
     public void setChansonEnCours(int index) throws MalformedURLException {
         this.indexMusique = index;
         if (mediaPlayer != null) {
-            arreterChanson();
+            mediaPlayer.stop();
             setMedia(new File(listeMusique.get(indexMusique).getPath()));
             jouerChanson();
         } else if (listeMusique.size() > 0) {
@@ -258,7 +258,9 @@ class LecteurDeMusique implements ConstantesApplication {
      */
     public void arreterChanson() {
         if (mediaPlayer != null) {
-            mediaPlayer.stop();
+            // Pause, sinon on ne peut plus ajuster de valeur de départ à une chanson chargé en mémoire.
+            mediaPlayer.pause();
+            modifierPositionChanson(0.0);
             etatLecture = EtatLecture.ARRET;
         }
     }
@@ -299,7 +301,7 @@ class LecteurDeMusique implements ConstantesApplication {
      * @throws MalformedURLException
      */
     public void recommencerChanson() throws MalformedURLException {
-        arreterChanson();
+        mediaPlayer.stop();
         setChansonEnCours(indexMusique);
     }
 
@@ -649,7 +651,7 @@ class LecteurDeMusique implements ConstantesApplication {
      * @param index L'index où se trouve la chanson dans la liste.
      */
     public void enleverChanson(int index) {
-        arreterChanson();
+        mediaPlayer.stop();
         listeMusique.remove(index);
     }
 
