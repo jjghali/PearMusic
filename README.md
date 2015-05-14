@@ -7,7 +7,7 @@ A basic music player made with javafx.
 
 We need your help! 
 
- 1. [Fork](https://github.com/PearMusic/fork) the project
+ 1. Fork the project
  2. Clone your forked repo: `git clone https://github.com/YourUsername/PearMusic.git`
  3. Create your feature/bugfix branch: `git checkout -b new-feature`
  4. Commit your changes to your new branch: `git commit -am 'Add a new feature'`
