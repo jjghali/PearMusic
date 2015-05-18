@@ -16,7 +16,7 @@ We need your help!
 
 ## Compiling
 
-LiveSplit is written in java 8 with IntelliJ IDEA and uses javafx. To compile LiveSplit you can get any IDE that supports java 8 and javafx, these include:
+ LiveSplit is written in java 8 with IntelliJ IDEA and uses javafx. To compile PearMusic you can get any IDE that supports java 8 and javafx, these include:
  - IntelliJ IDEA Ultimate or Community Edition
  - Netbeans
 
